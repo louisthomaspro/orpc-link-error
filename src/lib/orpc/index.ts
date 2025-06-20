@@ -11,15 +11,14 @@ declare global {
   var $client: RouterClient<typeof router> | undefined
 }
 
+// To fix the issue, use "Normal SSR" => https://orpc.unnoq.com/docs/adapters/next#client
 const link = new RPCLink({
-  url: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/rpc`,
-  headers: async () => {
-    if (typeof window !== 'undefined') {
-      return {}
+  url: () => {
+    if (typeof window === 'undefined') {
+      throw new Error('RPCLink is not allowed on the server side.')
     }
 
-    const { headers } = await import('next/headers')
-    return Object.fromEntries(await headers())
+    return `${window.location.origin}/rpc`
   },
 })
 
