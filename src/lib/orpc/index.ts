@@ -12,16 +12,17 @@ declare global {
 }
 
 const link = new RPCLink({
-  url: `${typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"}/rpc`,
-  headers: async () => {
-    if (typeof window !== "undefined") {
-      return {}
+  url: () => {
+    if (typeof window === 'undefined') {
+      throw new Error('RPCLink is not allowed on the server side.')
     }
 
-    const { headers } = await import("next/headers")
-    return Object.fromEntries(await headers())
+    return `${window.location.origin}/rpc`
   },
 })
+
+
+
 export const client: RouterClient<typeof router> = globalThis.$client ?? createORPCClient(link)
 
 export const orpc = createRouterUtils(client)
