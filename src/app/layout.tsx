@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "@/lib/orpc/orpc.server"
-import { serverActionTest1 } from "@/lib/server-utils";
+import "@/lib/orpc/orpc.server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +23,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  await serverActionTest1()
-
   return (
     <html lang="en">
       <body
