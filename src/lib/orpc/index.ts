@@ -12,12 +12,14 @@ declare global {
 }
 
 const link = new RPCLink({
-  url: () => {
-    if (typeof window === 'undefined') {
-      throw new Error('RPCLink is not allowed on the server side.')
+  url: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/rpc`,
+  headers: async () => {
+    if (typeof window !== 'undefined') {
+      return {}
     }
 
-    return `${window.location.origin}/rpc`
+    const { headers } = await import('next/headers')
+    return Object.fromEntries(await headers())
   },
 })
 
