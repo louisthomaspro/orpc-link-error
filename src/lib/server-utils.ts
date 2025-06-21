@@ -1,10 +1,7 @@
-"use server"
-
-// import "@/lib/orpc/orpc.server";
-
 import { client } from "@/lib/orpc"
+import "server-only"
 
-export const serverActionTest = async () => {
+export const handleCredits = async () => {
   const res = await client.test()
-  console.log("serverActionTest", res)
+  console.log("handleCredits", res)
 }

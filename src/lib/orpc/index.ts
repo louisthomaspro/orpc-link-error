@@ -11,7 +11,6 @@ declare global {
   var $client: RouterClient<typeof router> | undefined
 }
 
-// To fix the issue, use "Normal SSR" => https://orpc.unnoq.com/docs/adapters/next#client
 const link = new RPCLink({
   url: () => {
     if (typeof window === 'undefined') {

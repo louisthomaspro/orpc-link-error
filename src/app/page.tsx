@@ -1,5 +1,5 @@
 import { client } from "@/lib/orpc";
-import { serverActionTest } from "@/lib/server-utils";
+import { serverActionTest } from "@/lib/actions";
 
 export default async function Home() {
   const res = await client.test()
