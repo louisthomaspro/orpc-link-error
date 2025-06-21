@@ -5,6 +5,6 @@
 import { client } from "@/lib/orpc"
 
 export const serverActionTest = async () => {
-  const res = await client.test()
+  const res = await client.test1()
   console.log("serverActionTest", res)
 }

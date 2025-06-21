@@ -1,6 +1,6 @@
-import { test, test2 } from "@/lib/orpc/router/test";
+import { test1, test2 } from "@/lib/orpc/router/test";
 
 export const router = {
-  test,
+  test1,
   test2,
 }
