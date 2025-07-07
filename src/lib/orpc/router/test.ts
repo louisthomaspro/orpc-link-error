@@ -1,6 +1,7 @@
 
 import { pub } from "@/lib/orpc/middlewares"
 import myService from "@/lib/service"
+import { unstable_cache } from "next/cache"
 
 export const test1 = pub
   .handler(async () => {
@@ -12,3 +13,16 @@ export const test2 = pub
     await myService.serviceFunction1()
     return { success: true }
   })
+
+export const test3 = pub.handler(async () => {
+  const response = await unstable_cache(async () => asyncFunction(), ["test3"], {
+    revalidate: 10,
+  })()
+
+  return response
+})
+
+const asyncFunction = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 500))
+  return { success: true }
+}

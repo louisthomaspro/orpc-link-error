@@ -2,7 +2,7 @@ import { client } from "@/lib/orpc";
 // import { serverActionTest } from "@/lib/actions";
 
 export default async function Home() {
-  const res = await client.test1()
+  const res = await client.test3()
   // await serverActionTest()
 
   return (
