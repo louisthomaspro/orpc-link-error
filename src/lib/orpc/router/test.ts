@@ -16,13 +16,13 @@ export const test2 = pub
 
 export const test3 = pub.handler(async () => {
   const response = await unstable_cache(async () => asyncFunction(), ["test3"], {
-    revalidate: 10,
+    revalidate: false,
   })()
 
   return response
 })
 
 const asyncFunction = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 500))
+  await new Promise((resolve) => setTimeout(resolve, 1000))
   return { success: true }
 }
