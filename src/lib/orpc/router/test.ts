@@ -23,6 +23,6 @@ export const test3 = pub.handler(async () => {
 })
 
 const asyncFunction = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  await new Promise((resolve) => setTimeout(resolve, 2000))
   return { success: true }
 }
