@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@/lib/orpc/orpc.server";
-import { client } from "@/lib/orpc";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,16 +24,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const res = await client.test3()
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <pre className="bg-gray-100 p-4 rounded-lg overflow-auto text-gray-900">
-          {JSON.stringify(res, null, 2)}
-        </pre>
         {children}
       </body>
     </html>
